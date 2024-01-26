@@ -1,6 +1,92 @@
-
+{% from 'bootstrap5/form.html' import render_form %}
 <div class="card">
-    <div class="card-body">
-        This is some text within a card body.
+    <div class="card-header">
+        ABG Interpreter
     </div>
-</div>
+
+    <div class="card-body">
+
+        <form method="POST">
+            <div class="form-group row g-3 mb-3">
+                <label for="ph" class="col-auto col-form-label">pH:</label>
+                <div class="col-auto">
+                    <input type="text" class="form-control" id="ph" name="ph" value={{abginput.ph}}>
+                </div>
+                <label for="ph" class="col-auto col-form-label">units</label>
+            </div>
+
+            <div class="form-group row g-3 mb-3">
+                <label for="paco2" class="col-auto col-form-label">PaCO<sub>2</sub>:</label>
+                <div class="col-auto">
+                    <input type="text" class="form-control" id="paco2" name="paco2" value={{abginput.paco2}}>
+                </div>
+                <label for="paco2" class="col-auto col-form-label">mmHg</label>
+            </div>
+            <div class="form-group row g-3 mb-3">
+                <label for="hco3" class="col-auto col-form-label">
+                    HCO<sub>3</sub><sup>-</sup>:
+                </label>
+                <div class="col-auto">
+                    <input type="text" class="form-control" id="hco3" name="hco3" value={{abginput.hco3}}>
+                </div>
+                <label for="hco3" class="col-auto col-form-label">mmol/L</label>
+            </div>
+            <div class="row g-3 mb-3">
+                <label for="na" class="col-auto col-form-label">
+                    NA<sup>+</sup>:
+                </label>
+                <div class="col-auto">
+                    <input type="text" class="form-control" id="na" name="na" value={{abginput.na}}>
+                </div>
+                <label for="na" class="col-auto col-form-label">mmol/L</label>
+            </div>
+            <div class="row g-3 mb-3">
+                <label for="cl" class="col-auto col-form-label">
+                    Cl<sup>-</sup>:
+                </label>
+                <div class="col-auto">
+                    <input type="text" class="form-control" id="cl" name="cl" value={{abginput.cl}}>
+                </div>
+                <label for="cl" class="col-auto col-form-label">mmol/L</label>
+            </div>
+            <div class="row g-3 mb-3">
+                <label for="mso" class="col-auto col-form-label">
+                    Measured serum osmolality:
+                </label>
+                <div class="col-auto">
+                    <input type="text" class="form-control" id="mso" name="mso" value={{abginput.mso}}>
+                </div>
+                <label for="mso" class="col-auto col-form-label">mOsm/kg</label>
+            </div>
+            <div class="row g-3 mb-3">
+                <label for="glu" class="col-auto col-form-label">
+                    Glucose:
+                </label>
+                <div class="col-auto">
+                    <input type="text" class="form-control" id="glu" name="glu" value={{abginput.glu}}>
+                </div>
+                <label for="glu" class="col-auto col-form-label">mmol/L</label>
+            </div>
+            <div class="row g-3 mb-3">
+                <label for="urea" class="col-auto col-form-label">
+                    Urea:
+                </label>
+                <div class="col-auto">
+                    <input type="text" class="form-control" id="urea" name="urea" value={{abginput.urea}}>
+                </div>
+                <label for="urea" class="col-auto col-form-label">mmol/L</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Calculate</button>
+        </form>
+    </div>
+
+    <div class="card-footer">
+        <strong>Result: </strong>
+        {% if abgresult %}
+
+        {% for key, value in abgresult.items() %}
+        <p>{{ key }}: {{ value }}</p>
+
+        {% endfor %}
+        {% endif %}
+    </div>
